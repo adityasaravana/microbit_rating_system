@@ -12,7 +12,6 @@ input.onButtonPressed(Button.A, function () {
 input.onButtonPressed(Button.AB, function () {
     Likes = 0
     Dislikes = 0
-    datalogger.deleteLog()
 })
 input.onButtonPressed(Button.B, function () {
     Dislikes += 1
