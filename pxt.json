@@ -5,7 +5,8 @@
         "core": "*",
         "microphone": "*",
         "datalogger": "*",
-        "bluetooth": "*"
+        "bluetooth": "*",
+        "power": "github:microbit-foundation/pxt-microbit-v2-power#v0.2.3"
     },
     "files": [
         "main.blocks",

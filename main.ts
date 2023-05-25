@@ -1,12 +1,6 @@
 input.onPinPressed(TouchPin.P0, function () {
     music.playTone(262, music.beat(BeatFraction.Whole))
-    basic.showLeds(`
-        . # . . .
-        . . # . .
-        . . . . .
-        # . . # .
-        . . . . .
-        `)
+    basic.showIcon(IconNames.Yes)
     addLike()
 })
 function addDislike () {
@@ -44,13 +38,7 @@ input.onButtonPressed(Button.B, function () {
 })
 input.onPinPressed(TouchPin.P1, function () {
     music.playTone(262, music.beat(BeatFraction.Whole))
-    basic.showLeds(`
-        . # . . .
-        . . # . .
-        . . . . .
-        # . . # .
-        . . . . .
-        `)
+    basic.showIcon(IconNames.Yes)
     addLike()
 })
 function reset () {
@@ -68,6 +56,7 @@ function reset () {
 }
 let Likes = 0
 let Dislikes = 0
+music.playTone(262, music.beat(BeatFraction.Whole))
 let Logging = true
 bluetooth.uartWriteString("Logging Started")
 datalogger.setColumnTitles(
