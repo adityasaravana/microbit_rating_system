@@ -1,16 +1,18 @@
-input.onPinPressed(TouchPin.P0, function () {
-    music.playTone(262, music.beat(BeatFraction.Whole))
-    basic.showIcon(IconNames.Yes)
-    addLike()
-})
 function addDislike () {
     Dislikes += 1
     music.playTone(131, music.beat(BeatFraction.Quarter))
-    bluetooth.uartWriteString("Likes: " + Likes + ", Dislikes:" + Dislikes)
-    datalogger.log(
-    datalogger.createCV("Likes", Likes),
-    datalogger.createCV("Dislikes", Dislikes)
-    )
+    serial.writeValue("Dislikes", Dislikes)
+}
+function sweetChildOMine () {
+    music.setTempo(189)
+    music.playTone(262, music.beat(BeatFraction.Whole))
+    music.playTone(523, music.beat(BeatFraction.Whole))
+    music.playTone(392, music.beat(BeatFraction.Whole))
+    music.playTone(349, music.beat(BeatFraction.Whole))
+    music.playTone(698, music.beat(BeatFraction.Whole))
+    music.playTone(392, music.beat(BeatFraction.Whole))
+    music.playTone(659, music.beat(BeatFraction.Whole))
+    music.playTone(392, music.beat(BeatFraction.Whole))
 }
 bluetooth.onBluetoothConnected(function () {
     music.playMelody("C D E F G A B C5 ", 800)
@@ -24,45 +26,23 @@ input.onButtonPressed(Button.A, function () {
 function addLike () {
     Likes += 1
     music.playTone(523, music.beat(BeatFraction.Quarter))
-    bluetooth.uartWriteString("Likes: " + Likes + ", Dislikes: " + Dislikes)
-    datalogger.log(
-    datalogger.createCV("Likes", Likes),
-    datalogger.createCV("Dislikes", Dislikes)
-    )
+    serial.writeValue("Likes", Likes)
 }
 input.onButtonPressed(Button.AB, function () {
-    reset()
+    sweetChildOMine()
+    basic.showString("L")
+    basic.showString("" + (Likes))
+    basic.showString("D")
+    basic.showString("" + (Dislikes))
+    basic.clearScreen()
 })
 input.onButtonPressed(Button.B, function () {
     addDislike()
 })
-input.onPinPressed(TouchPin.P1, function () {
-    music.playTone(262, music.beat(BeatFraction.Whole))
-    basic.showIcon(IconNames.Yes)
-    addLike()
-})
-function reset () {
-    Likes = 0
-    Dislikes = 0
-    datalogger.deleteLog()
-    datalogger.setColumnTitles(
-    "Likes",
-    "Dislikes"
-    )
-    datalogger.log(
-    datalogger.createCV("Likes", Likes),
-    datalogger.createCV("Dislikes", Dislikes)
-    )
-}
 let Likes = 0
 let Dislikes = 0
 music.playTone(262, music.beat(BeatFraction.Whole))
 let Logging = true
-bluetooth.uartWriteString("Logging Started")
-datalogger.setColumnTitles(
-"Likes",
-"Dislikes"
-)
 loops.everyInterval(1000, function () {
     if (Logging) {
     	
